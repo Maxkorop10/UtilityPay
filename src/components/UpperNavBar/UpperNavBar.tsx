@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CircleUserRound } from 'lucide-react';
 
 export function UpperNavBar() {
   return (
@@ -7,16 +8,16 @@ export function UpperNavBar() {
         <Link href="/">
           <h3 className="text-black font-bold text-[29px] mr-24">UtilityPay</h3>
         </Link>
-
-        <span className="flex space-x-9 text-blue-500 text-[20px] font-medium">
-          <Link href="/transactions">Перекази</Link>
-          <Link href="/notifications">Сповіщення</Link>
-        </span>
       </div>
 
-      <div className="flex space-x-9 text-blue-500 text-[20px] font-medium">
+      <div className="flex space-x-9 text-blue-500 text-[20px] font-medium items-center">
+        <Link href="/transactions">Перекази</Link>
+        <Link href="/notifications">Сповіщення</Link>
         <Link href="/cart">Кошик</Link>
-        <Link href="/profile">Профіль</Link>
+
+        <Link href="/profile">
+          <CircleUserRound size={35} />
+        </Link>
       </div>
     </nav>
   );
