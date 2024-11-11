@@ -4,9 +4,9 @@ import { CircleUserRound } from 'lucide-react';
 export function UpperNavBar() {
   return (
     <nav className="flex justify-between items-center h-[95px] px-9 shadow-md bg-white ">
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center">
         <Link href="/">
-          <h3 className="text-black font-bold text-[29px] mr-24">UtilityPay</h3>
+          <h3 className="text-black font-bold text-[29px]">UtilityPay</h3>
         </Link>
       </div>
 
