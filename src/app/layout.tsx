@@ -26,7 +26,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--backgroundMain)]`}
       >
         <UpperNavBar />
-
         <main className="p-9 flex">
           <SidebarProvider>
             <AppSidebar />

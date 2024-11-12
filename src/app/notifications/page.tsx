@@ -1,4 +1,9 @@
 import { Label } from '@radix-ui/react-label';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Сповіщення',
+};
 
 export default function NotificationPage() {
   return (

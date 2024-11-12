@@ -1,5 +1,10 @@
 import { Label } from '@radix-ui/react-label';
 import ProfileInfo from '@/src/modules/profile-info/profile-info';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Особистий профіль',
+};
 
 export default function ProfilePage() {
   return (

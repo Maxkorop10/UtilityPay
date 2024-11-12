@@ -1,6 +1,11 @@
 import { Label } from '@radix-ui/react-label';
 import { Zap, Flame, Droplet, Fence, Trash2 } from 'lucide-react';
 import Utility from '@/src/modules/utility-service/utility';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Комунальні послуги',
+};
 
 const utilitiesData = [
   {
