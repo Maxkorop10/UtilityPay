@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 import './globals.css';
-import UpperNavBar from '@/src/components/UpperNavBar';
+import UpperNavBar from '@/src/components/UpperNavBar/UpperNavBar';
 import { AppSidebar } from '@/src/components/AppSideBar/AppSideBar';
 import { SidebarProvider } from '@/src/components/ui/sidebar';
 
