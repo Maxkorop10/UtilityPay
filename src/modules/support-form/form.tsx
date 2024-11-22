@@ -1,39 +1,24 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Label } from '@radix-ui/react-label';
 import { Input } from '@/src/components/ui/input';
 import { Textarea } from '@/src/components/ui/textarea';
 import { Button } from '@/src/components/ui/button';
+import { supportFormSchema, SupportData } from './schema/schema';
 
-const supportFormSchema = z.object({
-  name: z
-    .string()
-    .regex(
-      new RegExp(/^[А-ЯІЇЄҐа-яіїєґ]{2,}(?:\s[А-ЯІЇЄҐа-яіїєґ]{2,}){1}$/),
-      'Ім`я повинно складатися з українських літер'
-    )
-    .min(2, "Ім'я має містити щонайменше 2 символи"),
-  email: z.string().email('Введіть дійсну електронну адресу'),
-  message: z
-    .string()
-    .min(10, 'Повідомлення має містити щонайменше 10 символів'),
-});
-
-type SupportFormData = z.infer<typeof supportFormSchema>;
-export default function SupportPageClient() {
+export default function SupportForm() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<SupportFormData>({
+  } = useForm<SupportData>({
     resolver: zodResolver(supportFormSchema),
   });
 
-  const onSubmit = (data: SupportFormData) => {
+  const onSubmit = (data: SupportData) => {
     console.log(data);
     alert('Ваш запит успішно відправлено!');
     reset();

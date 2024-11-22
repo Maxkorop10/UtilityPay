@@ -1,34 +1,23 @@
 'use client';
 
-import { FieldValues, useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { Button } from '@/src/components/ui/button';
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
-
-const loginSchema = z.object({
-  phoneNumber: z
-    .string()
-    .min(10, 'Номер телефону має містити мінімум 10 цифр')
-    .regex(
-      /^\+380\d{9}$/,
-      'Номер телефону повинен починатися з +380 і містити 12 цифр'
-    ),
-  password: z.string().min(8, 'Пароль має містити щонайменше 8 символів'),
-});
+import { loginSchema, LoginData } from './schema/schema';
 
 export default function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit = (data: LoginData) => {
     console.log(data);
   };
 
@@ -88,7 +77,10 @@ export default function LoginForm() {
         <Link href="/" className="text-blue-500 hover:underline text-sm">
           Забули пароль?
         </Link>
-        <Link href="/signup" className="text-blue-500 hover:underline text-sm">
+        <Link
+          href="/registration"
+          className="text-blue-500 hover:underline text-sm"
+        >
           Немає аккаунту?
         </Link>
       </div>

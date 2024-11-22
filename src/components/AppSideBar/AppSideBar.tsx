@@ -2,7 +2,6 @@ import {
   Lightbulb,
   Smartphone,
   Globe,
-  Tv,
   BadgePlus,
   DollarSign,
   CircleHelp,
@@ -35,11 +34,6 @@ const items = [
     title: 'Інтернет',
     url: '/internet',
     icon: Globe,
-  },
-  {
-    title: 'Телебачення',
-    url: '/tv',
-    icon: Tv,
   },
   {
     title: 'Замовити послугу',

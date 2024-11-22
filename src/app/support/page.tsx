@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import SupportPageFun from './SupportPage';
+import SupportForm from '../../modules/support-form/form';
 
 export const metadata: Metadata = {
   title: 'Служба підтримки',
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function SupportPage() {
   return (
     <div className="w-full flex justify-center">
-      <SupportPageFun />
+      <SupportForm />
     </div>
   );
 }

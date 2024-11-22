@@ -1,11 +1,11 @@
-import RegistrationForm from '@/src/modules/signup-form/signup-form';
+import RegistrationForm from '@/src/modules/registration-form/registration-form';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Реєстрація',
 };
 
-export default function SignupPage() {
+export default function RegistrationPage() {
   return (
     <div className="w-full flex justify-center items-start ">
       <RegistrationForm />
