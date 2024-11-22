@@ -21,7 +21,7 @@ export default function MobileForm() {
   };
 
   return (
-    <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+    <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md">
       <h1 className="font-bold text-2xl text-gray-800 text-left">
         Оплатити телефон
       </h1>

@@ -24,7 +24,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-1/2 p-6 bg-white rounded-lg shadow-md border border-gray-600"
+      className="w-1/3 p-6 bg-white rounded-lg shadow-md border border-gray-600"
     >
       <h2 className="text-2xl font-bold text-center">Увійти</h2>
       <p className="text-center text-gray-600 mb-6">
