@@ -1,4 +1,5 @@
 import { Label } from '@radix-ui/react-label';
+import { Button } from '@/src/components/ui/button';
 
 export default function ProfileInfo() {
   return (
@@ -23,6 +24,11 @@ export default function ProfileInfo() {
       <div className="flex flex-col mt-5">
         <Label>Номер особового рахунку</Label>
         <Label className="text-gray-500">4897 5132 4529 5014</Label>
+      </div>
+
+      <div className="mt-7 flex gap-7">
+        <Button className="bg-blue-500">Оновити дані</Button>
+        <Button>Вийти</Button>
       </div>
     </>
   );
