@@ -74,7 +74,10 @@ export default function LoginForm() {
       </div>
 
       <div className="flex justify-between items-center mb-6">
-        <Link href="/" className="text-blue-500 hover:underline text-sm">
+        <Link
+          href="/reset-password"
+          className="text-blue-500 hover:underline text-sm"
+        >
           Забули пароль?
         </Link>
         <Link
