@@ -6,7 +6,7 @@ import { Button } from '@/src/components/ui/button';
 export default function NewOrderForm() {
   return (
     <form>
-      <div className="w-full flex justify-center items-start ">
+      <div className="flex justify-center items-start ">
         <div className="rounded-[10px] shadow-md w-[1000px] h-fit  p-6 bg-white">
           <Label className="font-bold text-2xl">Замовити послугу</Label>
 
