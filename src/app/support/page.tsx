@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
+import SupportPageFun from './SupportPage';
 
 export const metadata: Metadata = {
-  title: 'Центр підтримки',
+  title: 'Служба підтримки',
 };
 
 export default function SupportPage() {
   return (
-    <div className="rounded-[10px] shadow-md h-fit w-[100%] p-4 bg-white">
-      <p className="font-bold text-2xl">Центр підтримки</p>
+    <div className="w-full flex justify-center">
+      <SupportPageFun />
     </div>
   );
 }
