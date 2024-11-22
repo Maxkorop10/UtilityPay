@@ -11,6 +11,8 @@ export function UpperNavBar() {
       </div>
 
       <div className="flex space-x-9 text-blue-500 text-[20px] font-medium items-center">
+        <Link href="/login">Вхід</Link>
+        <Link href="/signup">Реєстрація</Link>
         <Link href="/transactions">Перекази</Link>
         <Link href="/notifications">Сповіщення</Link>
         <Link href="/cart">Кошик</Link>
