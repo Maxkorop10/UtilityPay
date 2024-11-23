@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Separator } from '@/src/components/ui/separator';
 import { Button } from '@/src/components/ui/button';
 import { registrationSchema, RegistrationData } from './schema/schema';
+import PasswordInput from '@/src/components/PasswordInput/PasswordInput';
 
 export default function RegistrationForm() {
   const {
@@ -25,7 +26,7 @@ export default function RegistrationForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-1/3 p-6 bg-white rounded-lg shadow-md border border-gray-600"
+      className="w-[500px] p-6 bg-white rounded-lg shadow-md border border-gray-600"
     >
       <h2 className="text-2xl font-bold text-center">Зареєструватися</h2>
       <p className="text-center text-gray-600 mb-6">
@@ -104,8 +105,7 @@ export default function RegistrationForm() {
         >
           Пароль
         </Label>
-        <Input
-          type="password"
+        <PasswordInput
           id="password"
           {...register('password')}
           className={`w-full p-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md`}
@@ -125,8 +125,7 @@ export default function RegistrationForm() {
         >
           Повторіть пароль
         </Label>
-        <Input
-          type="password"
+        <PasswordInput
           id="confirmPassword"
           {...register('confirmPassword')}
           className={`w-full p-2 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} rounded-md`}

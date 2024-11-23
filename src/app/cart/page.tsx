@@ -30,7 +30,7 @@ export default function CartPage() {
   const totalPrice = utilities.reduce((sum, utility) => sum + utility.price, 0);
 
   return (
-    <div className="rounded-[10px] shadow-md h-fit w-[100%] p-4 bg-white">
+    <div className="rounded-[10px] shadow-md h-fit w-[100%] p-6 bg-white">
       <p className="font-bold text-2xl">Кошик</p>
       <div className="mt-4">
         {utilities.map((utility, index) => (

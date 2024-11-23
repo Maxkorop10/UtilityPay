@@ -7,6 +7,7 @@ import { Button } from '@/src/components/ui/button';
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
 import { loginSchema, LoginData } from './schema/schema';
+import PasswordInput from '@/src/components/PasswordInput/PasswordInput';
 
 export default function LoginForm() {
   const {
@@ -24,7 +25,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-1/3 p-6 bg-white rounded-lg shadow-md border border-gray-600"
+      className="w-[500px] p-6 bg-white rounded-lg shadow-md border border-gray-600"
     >
       <h2 className="text-2xl font-bold text-center">Увійти</h2>
       <p className="text-center text-gray-600 mb-6">
@@ -59,8 +60,7 @@ export default function LoginForm() {
         >
           Пароль
         </Label>
-        <Input
-          type="password"
+        <PasswordInput
           id="password"
           {...register('password')}
           className={`w-full p-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md`}

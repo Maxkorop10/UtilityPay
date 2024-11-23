@@ -20,7 +20,11 @@ export const registrationSchema = z
         /^м\.\s[А-ЯІЇЄҐа-яіїєґ]+,\s*вул\.\s[А-ЯІЇЄҐа-яіїєґ\s]+,\s*буд\.\s\d+(?:,\s*кв\.\s\d+)?$/,
         'Адреса введена невірно'
       ),
-    password: z.string().min(8, 'Пароль має містити щонайменше 8 символів'),
+    password: z
+      .string()
+      .min(8, 'Новий пароль має містити щонайменше 8 символів')
+      .regex(/[A-Z]/, 'Новий пароль має містити хоча б одну велику літеру')
+      .regex(/\d/, 'Новий пароль має містити хоча б одну цифру'),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

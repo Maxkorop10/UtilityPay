@@ -74,7 +74,7 @@ export default function InternetForm() {
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[470px] p-0">
+            <PopoverContent className="w-[352px] p-0">
               <Command>
                 <CommandInput placeholder="Пошук провайдера..." />
                 <CommandList>

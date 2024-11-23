@@ -61,7 +61,7 @@ export function PhonePaymentForm() {
         </CardContent>
 
         <CardContent className="flex flex-row gap-4">
-          <div>
+          <div className="w-7/12">
             <p className="text-sm">Номер телефону</p>
             <Input
               className="border-gray-400"
@@ -76,7 +76,7 @@ export function PhonePaymentForm() {
             )}
           </div>
 
-          <div>
+          <div className="w-5/12">
             <p className="text-sm">Сума</p>
             <Input
               className="border-gray-400"
