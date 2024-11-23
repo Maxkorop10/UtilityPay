@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function NewOrderPage() {
   return (
-    <div className="rounded-[10px] shadow-md w-[1000px] h-fit  p-6 bg-white">
+    <div className="w-full flex justify-center">
       <NewOrderForm />
     </div>
   );

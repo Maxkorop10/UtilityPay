@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="w-full flex justify-center items-start ">
+    <div className="w-full flex justify-center items-start">
       <LoginForm />
     </div>
   );

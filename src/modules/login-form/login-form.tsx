@@ -24,7 +24,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-1/2 p-6 bg-white rounded-lg shadow-md border border-gray-600"
+      className="w-1/3 p-6 bg-white rounded-lg shadow-md border border-gray-600"
     >
       <h2 className="text-2xl font-bold text-center">Увійти</h2>
       <p className="text-center text-gray-600 mb-6">
@@ -74,7 +74,10 @@ export default function LoginForm() {
       </div>
 
       <div className="flex justify-between items-center mb-6">
-        <Link href="/" className="text-blue-500 hover:underline text-sm">
+        <Link
+          href="/reset-password"
+          className="text-blue-500 hover:underline text-sm"
+        >
           Забули пароль?
         </Link>
         <Link

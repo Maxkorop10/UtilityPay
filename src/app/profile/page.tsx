@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function ProfilePage() {
   return (
-    <div className="rounded-[10px] shadow-md h-fit w-[100%] p-4 bg-white">
+    <div className="rounded-[10px] shadow-md h-fit w-full p-6 bg-white">
       <Label className="font-bold text-2xl">Особистий профіль</Label>
       <ProfileInfo />
     </div>

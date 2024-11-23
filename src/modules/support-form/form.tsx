@@ -56,7 +56,7 @@ export default function SupportForm() {
           <Input
             type="email"
             id="email"
-            placeholder="пошта@mail.ru"
+            placeholder="example@gmail.com"
             {...register('email')}
             className="mt-1 p-2 w-full border rounded-md"
           />

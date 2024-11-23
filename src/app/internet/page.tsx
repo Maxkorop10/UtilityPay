@@ -1,3 +1,4 @@
+import InternetForm from '@/src/modules/internet-form/form';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,8 +7,8 @@ export const metadata: Metadata = {
 
 export default function InternetPage() {
   return (
-    <div className="rounded-[10px] shadow-md h-fit w-[100%] p-4 bg-white">
-      <p className="font-bold text-2xl">Оплата інтернету</p>
+    <div className="w-full flex justify-center items-start">
+      <InternetForm />
     </div>
   );
 }
