@@ -10,7 +10,7 @@ const Utility: FC<UtilityProps> = ({
   price,
 }) => {
   return (
-    <div className="my-4 p-6 bg-white rounded-lg shadow-md border">
+    <div className="my-4 py-4 bg-white rounded-lg border-b">
       <div className="flex items-center justify-between">
         <div className="flex flex-col text-gray-800 gap-2">
           <div className="flex items-center gap-3">

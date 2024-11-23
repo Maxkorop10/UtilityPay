@@ -27,7 +27,7 @@ const utilitiesData = [
 
 export default function UtilityBillsPage() {
   return (
-    <div className="rounded-[10px] shadow-md h-fit w-[100%] p-6 bg-white">
+    <div className="rounded-[10px] shadow-md h-fit w-full p-6 bg-white">
       <Label className="font-bold text-2xl">Комунальні послуги</Label>
 
       {utilitiesData.map((utility, index) => (
