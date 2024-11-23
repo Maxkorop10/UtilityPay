@@ -19,7 +19,7 @@ export const BankPicker: FC<BankPickerProps> = ({
   ];
 
   return (
-    <div className="flex flex-row w-full px-6 pb-4 justify-between">
+    <div className="flex flex-row w-full justify-between">
       {paymentLogos.map((logo, index) => (
         <div
           key={index}

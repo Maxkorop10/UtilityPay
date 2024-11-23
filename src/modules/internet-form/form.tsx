@@ -23,10 +23,12 @@ import {
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { providers } from '@/src/lib/providers';
 import { cn } from '@/src/lib/utils';
+import { BankPicker } from '../bank-picker/picker';
 
 export default function InternetForm() {
   const [open, setOpen] = useState(false);
   const [comboValue, setComboValue] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const {
     trigger,
@@ -45,14 +47,15 @@ export default function InternetForm() {
   };
 
   return (
-    <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md">
+    <div className="w-[400px] p-6 bg-white rounded-lg shadow-md">
       <h1 className="font-bold text-2xl text-gray-800 text-left">
         Оплата інтернету
       </h1>
-      <p className="text-sm text-gray-500 text-left">
-        Оберіть свій спосіб оплати
+      <p className="text-sm text-gray-500 text-left mt-[6px]">
+        Оберіть спосіб оплати
       </p>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
+        <BankPicker selectedIndex={selectedIndex} onChange={setSelectedIndex} />
         <div>
           <Label htmlFor="accountNumber" className="text-gray-700">
             Провайдер
@@ -145,7 +148,11 @@ export default function InternetForm() {
             <p className="mt-1 text-sm text-red-600">{errors.amount.message}</p>
           )}
         </div>
-        <Button type="submit" className="w-full bg-black hover:bg-gray-800">
+        <Button
+          type="submit"
+          className="w-full bg-black hover:bg-gray-800"
+          disabled={selectedIndex === null}
+        >
           Оплатити
         </Button>
       </form>

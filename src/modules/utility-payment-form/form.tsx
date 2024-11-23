@@ -47,11 +47,18 @@ export function UtilPaymentForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card className="w-[400px] max-h-fit">
         <CardHeader>
-          <CardTitle>Спосіб оплати</CardTitle>
-          <CardDescription>Або оберіть спосіб оплати</CardDescription>
+          <CardTitle className="font-bold text-2xl text-gray-800 text-left">
+            Спосіб оплати
+          </CardTitle>
+          <CardDescription>Оберіть спосіб оплати</CardDescription>
         </CardHeader>
 
-        <BankPicker selectedIndex={selectedIndex} onChange={setSelectedIndex} />
+        <CardContent>
+          <BankPicker
+            selectedIndex={selectedIndex}
+            onChange={setSelectedIndex}
+          />
+        </CardContent>
 
         <CardContent className="flex flex-col gap-4">
           <div>

@@ -45,17 +45,24 @@ export function PhonePaymentForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Card className="w-[400px] max-h-fit shadow-md border border-gray-600">
+      <Card className="w-[400px] max-h-fit">
         <CardHeader>
-          <CardTitle>Оплатити телефон</CardTitle>
-          <CardDescription>Або оберіть спосіб оплати</CardDescription>
+          <CardTitle className="font-bold text-2xl text-gray-800 text-left">
+            Оплатити телефон
+          </CardTitle>
+          <CardDescription>Оберіть спосіб оплати</CardDescription>
         </CardHeader>
 
-        <BankPicker selectedIndex={selectedIndex} onChange={setSelectedIndex} />
+        <CardContent>
+          <BankPicker
+            selectedIndex={selectedIndex}
+            onChange={setSelectedIndex}
+          />
+        </CardContent>
 
         <CardContent className="flex flex-row gap-4">
           <div>
-            <p>Номер телефону</p>
+            <p className="text-sm">Номер телефону</p>
             <Input
               className="border-gray-400"
               placeholder="+380XXXXXXXXX"
@@ -70,7 +77,7 @@ export function PhonePaymentForm() {
           </div>
 
           <div>
-            <p>Сума</p>
+            <p className="text-sm">Сума</p>
             <Input
               className="border-gray-400"
               placeholder="Введіть суму"
