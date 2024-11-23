@@ -27,8 +27,8 @@ const TransactionHistoryData = [
 export default function TransactionHistoryPage() {
   return (
     <div className="rounded-[10px] shadow-md h-fit w-[100%] p-6 bg-white">
-      <Label className="font-bold text-2xl mb-4">Історія переказів</Label>
-      <ul className="space-y-4">
+      <Label className="font-bold text-2xl">Історія переказів</Label>
+      <ul>
         {TransactionHistoryData.map((transaction, index) => (
           <Transaction
             key={index}

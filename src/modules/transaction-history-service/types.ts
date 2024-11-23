@@ -1,5 +1,5 @@
 export interface HistoryProps {
-    serviceName: string;
-    price: string;
-    date: string;
+  serviceName: string;
+  price: string;
+  date: string;
 }

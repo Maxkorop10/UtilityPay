@@ -15,7 +15,9 @@ const Utility: FC<UtilityProps> = ({
         <div className="flex flex-col text-gray-800 gap-2">
           <div className="flex items-center gap-2">
             <Icon size={22} color={'#1F2937'} />
-            <Label className="font-semibold text-[20px] leading-[22px]">{utility_name}</Label>
+            <Label className="font-semibold text-[20px] leading-[22px]">
+              {utility_name}
+            </Label>
           </div>
           <Label className="text-sm text-gray-500">
             Спожита кількість: <span className="font-medium">{used_value}</span>
