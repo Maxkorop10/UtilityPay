@@ -8,31 +8,31 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card';
+import { BankPicker } from '@/src/modules/bank-picker/picker';
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
-import { BankPicker } from '@/src/modules/bank-picker/picker';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import {
-  paymentSchema,
-  PaymentSchema,
-} from '@/src/modules/utility-payment-form/util-payment-schema/schema';
+  mobileSchema,
+  MobileSchema,
+} from '@/src/modules/phone-payment-form/schema';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-export function UtilPaymentForm() {
+export function PhonePaymentForm() {
   const {
     handleSubmit,
     formState: { errors },
     register,
     reset,
-  } = useForm<PaymentSchema>({
+  } = useForm<MobileSchema>({
     mode: 'all',
-    resolver: zodResolver(paymentSchema),
+    resolver: zodResolver(mobileSchema),
   });
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  const onSubmit = (data: PaymentSchema) => {
+  const onSubmit = (data: MobileSchema) => {
     console.log(data);
     reset();
   };
@@ -45,26 +45,26 @@ export function UtilPaymentForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Card className="w-[400px] max-h-fit">
+      <Card className="w-[400px] max-h-fit shadow-md border border-gray-600">
         <CardHeader>
-          <CardTitle>Спосіб оплати</CardTitle>
+          <CardTitle>Оплатити телефон</CardTitle>
           <CardDescription>Або оберіть спосіб оплати</CardDescription>
         </CardHeader>
 
         <BankPicker selectedIndex={selectedIndex} onChange={setSelectedIndex} />
 
-        <CardContent className="flex flex-col gap-4">
+        <CardContent className="flex flex-row gap-4">
           <div>
-            <p>Адреса</p>
+            <p>Номер телефону</p>
             <Input
               className="border-gray-400"
-              placeholder="м. Черкаси, вул. Благовісна, буд. 31, кв. 121"
-              {...register('address')}
-              id="address_input"
+              placeholder="+380XXXXXXXXX"
+              {...register('phoneNumber')}
+              id="phoneNumber_input"
             />
-            {errors.address && (
+            {errors.phoneNumber && (
               <p className="text-red-500 text-sm mt-2">
-                {errors.address.message}
+                {errors.phoneNumber.message}
               </p>
             )}
           </div>
@@ -75,7 +75,7 @@ export function UtilPaymentForm() {
               className="border-gray-400"
               placeholder="Введіть суму"
               type="text"
-              inputMode="decimal"
+              inputMode="numeric"
               {...register('summa')}
               id="summa_input"
               onInput={handleInputFilter}

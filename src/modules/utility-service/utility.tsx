@@ -23,7 +23,7 @@ const Utility: FC<UtilityProps> = ({
           <Label className="text-sm text-gray-600">Сума: {price} грн.</Label>
         </div>
         <Button className="bg-blue-500 text-white rounded px-4 py-2">
-          Сплатити
+          До кошика
         </Button>
       </div>
     </div>
