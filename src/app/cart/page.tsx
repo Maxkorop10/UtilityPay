@@ -1,63 +1,60 @@
-import type { Metadata } from 'next';
-import { Zap, Flame, Droplet } from 'lucide-react';
+import { Metadata } from 'next';
+import { Button } from '@/src/components/ui/button';
+import prisma from '@/src/lib/prisma';
 
 export const metadata: Metadata = {
   title: 'Кошик',
 };
 
-export default function CartPage() {
-  const utilities = [
-    {
-      Icon: Zap,
-      utility_name: 'Електроенергія',
-      used_value: '200 кВт',
-      price: 400,
-    },
-    {
-      Icon: Droplet,
-      utility_name: 'Вода',
-      used_value: '15 м³',
-      price: 150,
-    },
-    {
-      Icon: Flame,
-      utility_name: 'Газ',
-      used_value: '20 м³',
-      price: 300,
-    },
-  ];
+async function getCartItems() {
+  const userId = 1;
 
-  const totalPrice = utilities.reduce((sum, utility) => sum + utility.price, 0);
+  const cart = await prisma.cart.findUnique({
+    where: { userId },
+    include: {
+      services: {
+        include: {
+          availableService: true,
+        },
+      },
+    },
+  });
+
+  return cart?.services || [];
+}
+
+export default async function CartPage() {
+  const cartItems = await getCartItems();
+
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.totalPrice, 0);
 
   return (
     <div className="rounded-[10px] shadow-md h-fit w-[100%] p-6 bg-white">
       <p className="font-bold text-2xl">Кошик</p>
       <div className="mt-4">
-        {utilities.map((utility, index) => (
+        {cartItems.map((item) => (
           <div
-            key={index}
+            key={item.id}
             className="flex items-center justify-between border-b py-4"
           >
-            <div className="flex items-center gap-4">
-              <utility.Icon className="w-6 h-6 text-black" />
-              <div>
-                <p className="font-bold text-lg">{utility.utility_name}</p>
-                <p className="text-sm text-gray-600">
-                  Спожито: {utility.used_value}
-                </p>
-              </div>
+            <div>
+              <p className="font-bold text-lg">{item.availableService.name}</p>
+              <p className="text-sm text-gray-600">
+                Спожито: {item.consumedUnits} 
+                {item.availableService.name === 'Електроенергія' ? ' кВт' : ' м³'}
+              </p>
             </div>
             <p className="text-sm font-bold text-gray-800">
-              {utility.price} грн.
+              {item.totalPrice} грн.
             </p>
           </div>
         ))}
       </div>
       <div className="flex justify-between items-center mt-2 pt-4">
         <p className="font-bold text-lg">Загальна сума: {totalPrice} грн.</p>
-        <button className="bg-green-500 text-white rounded px-6 py-2">
+        <Button className="bg-green-500 text-white rounded px-6 py-2 hover:bg-green-600 transition-colors">
           Оплатити все
-        </button>
+        </Button>
       </div>
     </div>
   );

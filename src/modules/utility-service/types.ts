@@ -4,5 +4,8 @@ export interface UtilityProps {
   Icon: LucideIcon;
   utility_name: string;
   used_value: string;
-  price: string;
+  price: number;
+  addressId: number;
+  availableServiceId: number;
+  consumedUnits: number;
 }
