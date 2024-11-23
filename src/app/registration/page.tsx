@@ -1,4 +1,4 @@
-import RegistrationForm from '@/src/modules/registration-form/registration-form';
+import RegistrationForm from '@/src/modules/registration-form/form';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

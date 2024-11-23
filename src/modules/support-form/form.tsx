@@ -20,7 +20,6 @@ export default function SupportForm() {
 
   const onSubmit = (data: SupportData) => {
     console.log(data);
-    alert('Ваш запит успішно відправлено!');
     reset();
   };
 
@@ -38,7 +37,7 @@ export default function SupportForm() {
           <Input
             type="text"
             id="name"
-            placeholder="Введіть свої ім`я"
+            placeholder="Введіть Ім'я та Прізвище"
             {...register('name')}
             className="mt-1 p-2 w-full border rounded-md"
           />
