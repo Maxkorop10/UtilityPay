@@ -31,6 +31,7 @@ model Address {
   userId Int
   user    User  @relation(fields: [userId], references: [id])
   services Service[] // Послуги, пов'язані з цією адресою
+  debts Debt[]
 }
 
 model Company {
@@ -46,6 +47,7 @@ model AvailableService {
   companyId    Int
   company      Company @relation(fields: [companyId], references: [id]) // Прив'язка до компанії
   services     Service[] // Послуги, надані через цю доступну послугу
+  debts Debt[]
 }
 
 model Service {
@@ -81,4 +83,13 @@ model Transactions {
   userId    Int
   totalPrice Float
   createdAt DateTime @default(now())
+}
+
+model Debt {
+  id Int @id @default(autoincrement())
+  addressId          Int
+  address            Address @relation(fields: [addressId], references: [id]) // Прив'язка до адреси
+  availableServiceId Int
+  availableService   AvailableService @relation(fields: [availableServiceId], references: [id]) // Прив'язка до доступної послуги
+  price         Float
 }

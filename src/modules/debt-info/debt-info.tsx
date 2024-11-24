@@ -6,29 +6,18 @@ import {
   DialogTrigger,
 } from '@/src/components/ui/dialog';
 import { UtilPaymentForm } from '@/src/modules/utility-payment-form/form';
+import { FC } from 'react';
+import { DebtInfoProps } from '@/src/modules/debt-info/types';
 
-export function DebtInfo() {
-  const debtInfo = [
-    { Label: 'Газопостачання', debt: '0 грн.' },
-    { Label: 'Водопостачання', debt: '50 грн.' },
-    { Label: 'Світло', debt: '15 грн.' },
-    { Label: 'Опалення', debt: '5 грн.' },
-    { Label: 'Вивіз сміття', debt: '0 грн.' },
-  ];
-
-  const parseDebt = (debt: string) =>
-    parseFloat(debt.replace(/[^\d.-]/g, '')) || 0;
-  const totalDebt = debtInfo.reduce(
-    (sum, utility) => sum + parseDebt(utility.debt),
-    0
-  );
+const DebtInfo: FC<DebtInfoProps> = ({ debts }) => {
+  const totalDebt = debts.reduce((sum, utility) => sum + utility.price, 0);
 
   return (
     <div className="mt-4">
-      {debtInfo.map((utility, index) => (
+      {debts.map((utility, index) => (
         <div key={index} className={`flex flex-row mt-2 gap-2`}>
-          <Label>{utility.Label}</Label>
-          <Label className="text-gray-500">{utility.debt}</Label>
+          <Label>{utility.availableService.name}</Label>
+          <Label className="text-gray-500">{utility.price} грн.</Label>
         </div>
       ))}
 
@@ -47,4 +36,6 @@ export function DebtInfo() {
       </Dialog>
     </div>
   );
-}
+};
+
+export default DebtInfo;

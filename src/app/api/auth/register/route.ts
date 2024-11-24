@@ -47,6 +47,18 @@ export async function POST(req: Request) {
       });
     });
 
+    const newdebts: {
+      availableServiceId: number;
+      price: number;
+    }[] = [];
+    availableServices.forEach((availableService) => {
+      const price = Math.floor(Math.random() * 1000);
+      newdebts.push({
+        availableServiceId: availableService.id,
+        price,
+      });
+    });
+
     // Створення нового користувача
     const newUser = await prisma.user.create({
       data: {
@@ -59,6 +71,9 @@ export async function POST(req: Request) {
               address: address,
               services: {
                 create: services,
+              },
+              debts: {
+                create: newdebts,
               },
             },
           ],
