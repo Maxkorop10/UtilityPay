@@ -1,6 +1,12 @@
 import { z } from 'zod';
 
 export const profileSchema = z.object({
+  phone: z
+    .string()
+    .regex(
+      /^\+380\d{9}$/,
+      'Номер телефону повинен починатися з +380 і містити 12 цифр'
+    ),
   fullName: z
     .string()
     .regex(

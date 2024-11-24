@@ -15,7 +15,6 @@ const privateRoutes = [
   '/new-order',
   '/notifications',
   '/profile',
-  '/reset-password',
   '/support',
   '/transaction-history',
   '/utility-bills',

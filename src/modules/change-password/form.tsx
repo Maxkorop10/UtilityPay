@@ -7,9 +7,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import PasswordInput from '@/src/components/PasswordInput/PasswordInput';
 import { PasswordFormData, passwordSchema } from './schema/schema';
+import { useRouter } from 'next/navigation';
 
 export default function ChangePassword() {
   const [passwordChanged, setPasswordChanged] = useState(false);
+  const router = useRouter();
+  const [passwordError, setPasswordError] = useState('');
 
   const {
     register,
@@ -20,10 +23,22 @@ export default function ChangePassword() {
     resolver: zodResolver(passwordSchema),
   });
 
-  const handlePasswordChange = (data: PasswordFormData) => {
-    console.log('Новий пароль:', data.newPassword);
-    setPasswordChanged(true);
-    reset();
+  const handlePasswordChange = async (data: PasswordFormData) => {
+    const response = await fetch('/api/change-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        password: data.currentPassword,
+        newPassword: data.newPassword,
+      }),
+    });
+    if (!response.ok) {
+      setPasswordError((await response.json()).error);
+    } else {
+      setPasswordChanged(true);
+      reset();
+      router.refresh();
+    }
   };
 
   return (
@@ -87,6 +102,9 @@ export default function ChangePassword() {
         >
           Змінити пароль
         </Button>
+        {passwordError && (
+          <p className="text-red-500 text-sm mt-1">{`${passwordError}`}</p>
+        )}
       </form>
     </div>
   );

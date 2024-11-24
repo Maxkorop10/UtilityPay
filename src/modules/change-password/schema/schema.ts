@@ -15,8 +15,8 @@ export const passwordSchema = z
       .min(1, 'Підтвердження пароля не може бути порожнім'),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: 'Новий пароль та підтвердження пароля не збігаються',
     path: ['confirmPassword'],
+    message: 'Паролі не збігаються',
   });
 
 export type PasswordFormData = z.infer<typeof passwordSchema>;
