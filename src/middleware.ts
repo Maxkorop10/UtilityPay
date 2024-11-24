@@ -5,7 +5,7 @@ const SECRET_KEY =
   process.env.JWT_SECRET ||
   'd72757de3d68d23a60c6ecbcb33499e94c5099f163d5caccfda93609ef918ca5';
 
-const publicRoutes = ['/', '/login', '/registration', '/_next', '/api'];
+// const publicRoutes = ['/', '/login', '/registration', '/_next', '/api'];
 const privateRoutes = [
   '/cart',
   '/change-password',
@@ -45,5 +45,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [...publicRoutes, ...privateRoutes],
+  matcher: ['/:path*'],
 };

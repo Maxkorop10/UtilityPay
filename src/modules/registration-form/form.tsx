@@ -10,6 +10,7 @@ import { Button } from '@/src/components/ui/button';
 import { registrationSchema, RegistrationData } from './schema/schema';
 import PasswordInput from '@/src/components/PasswordInput/PasswordInput';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function RegistrationForm() {
   const router = useRouter();
@@ -35,12 +36,14 @@ export default function RegistrationForm() {
     });
 
     if (!response.ok) {
-      throw new Error((await response.json()).error);
+      setRegistrationError((await response.json()).error);
     } else {
       router.push('/');
       router.refresh();
     }
   };
+
+  const [registrationError, setRegistrationError] = useState('');
 
   return (
     <form
@@ -169,6 +172,10 @@ export default function RegistrationForm() {
       >
         Зареєструватися
       </Button>
+
+      {registrationError && (
+        <p className="text-red-500 text-sm mt-1">{`${registrationError}`}</p>
+      )}
     </form>
   );
 }

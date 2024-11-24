@@ -21,7 +21,6 @@ export default async function ProfilePage() {
       userId: number;
     }[];
   } = await response.json();
-  console.log(profileInfo);
 
   return (
     <div className="rounded-[10px] shadow-md h-fit w-full p-6 bg-white">

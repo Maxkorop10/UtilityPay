@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: 'Користувач вже існує' },
+        { error: 'Користувач з таким номером телефону вже існує' },
         { status: 400 }
       );
     }
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     const token = await new jose.SignJWT({ userId: newUser.id })
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
-      .setExpirationTime('1h')
+      .setExpirationTime('7days')
       .sign(new TextEncoder().encode(SECRET_KEY));
 
     // Зберегти сесію в базі даних
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
     response.cookies.set('auth_token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 3600,
+      maxAge: 10080,
       path: '/',
     });
     return response;
