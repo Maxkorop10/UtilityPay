@@ -1,5 +1,11 @@
 import { Label } from '@radix-ui/react-label';
 import { Button } from '@/src/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from '@/src/components/ui/dialog';
+import { UtilPaymentForm } from '@/src/modules/utility-payment-form/form';
 
 export function DebtInfo() {
   const debtInfo = [
@@ -31,9 +37,14 @@ export function DebtInfo() {
         <Label className="font-bold text-red-500">{totalDebt} грн.</Label>
       </div>
 
-      <div className="mt-7 flex gap-5">
-        <Button className="bg-blue-500">Оплатити</Button>
-      </div>
+      <Dialog>
+        <DialogTrigger className="mt-7" asChild>
+          <Button className="bg-blue-500">Оплатити</Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-fit max-h-fit justify-center items-start">
+          <UtilPaymentForm />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

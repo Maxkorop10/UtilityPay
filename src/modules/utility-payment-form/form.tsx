@@ -3,10 +3,8 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from '@/src/components/ui/card';
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
@@ -18,6 +16,10 @@ import {
   PaymentSchema,
 } from '@/src/modules/utility-payment-form/util-payment-schema/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  DialogDescription,
+  DialogTitle,
+} from '@radix-ui/react-dialog';
 
 export function UtilPaymentForm() {
   const {
@@ -47,10 +49,10 @@ export function UtilPaymentForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card className="w-[400px] max-h-fit">
         <CardHeader>
-          <CardTitle className="font-bold text-2xl text-gray-800 text-left">
+          <DialogTitle className="font-bold text-2xl text-gray-800 text-left">
             Спосіб оплати
-          </CardTitle>
-          <CardDescription>Оберіть спосіб оплати</CardDescription>
+          </DialogTitle>
+          <DialogDescription>Оберіть спосіб оплати</DialogDescription>
         </CardHeader>
 
         <CardContent>

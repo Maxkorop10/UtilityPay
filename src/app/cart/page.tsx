@@ -1,5 +1,12 @@
 import type { Metadata } from 'next';
 import { Zap, Flame, Droplet } from 'lucide-react';
+import { Button } from '@/src/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from '@/src/components/ui/dialog';
+import { UtilPaymentForm } from '@/src/modules/utility-payment-form/form';
 
 export const metadata: Metadata = {
   title: 'Кошик',
@@ -55,9 +62,16 @@ export default function CartPage() {
       </div>
       <div className="flex justify-between items-center mt-2 pt-4">
         <p className="font-bold text-lg">Загальна сума: {totalPrice} грн.</p>
-        <button className="bg-green-500 text-white rounded px-6 py-2">
-          Оплатити все
-        </button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-green-600 text-white rounded-lg px-5 py-2 hover:bg-green-800 transition-colors duration-200">
+              Зробити оплату
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-fit max-h-fit justify-center items-start">
+            <UtilPaymentForm />
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
