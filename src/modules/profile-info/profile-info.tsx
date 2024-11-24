@@ -3,18 +3,27 @@
 import { Label } from '@radix-ui/react-label';
 import { Button } from '@/src/components/ui/button';
 import { Input } from '@/src/components/ui/input';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfileInfoData, profileSchema } from './schema/schema';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-export default function ProfileInfo() {
-  const initialProfileInfo = {
-    phone: '+380663512563',
-    fullName: "Прізвище Ім'я Побатькові",
-    address: 'м. Черкаси, вул. Благовісна, буд. 31, кв. 121',
+interface ProfileProps {
+  profileInfo: {
+    fullname: string;
+    phone: string;
+    addresses: {
+      address: string;
+      id: number;
+      userId: number;
+    }[];
   };
+}
+
+const ProfileInfo: FC<ProfileProps> = ({ profileInfo }) => {
+  const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -26,8 +35,8 @@ export default function ProfileInfo() {
   } = useForm<ProfileInfoData>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      fullName: initialProfileInfo.fullName,
-      address: initialProfileInfo.address,
+      fullName: profileInfo.fullname,
+      address: profileInfo.addresses[0].address,
     },
   });
 
@@ -41,12 +50,22 @@ export default function ProfileInfo() {
     setIsEditing(false);
   };
 
+  const handleLogout = async () => {
+    const response = await fetch('/api/auth/logout', {
+      method: 'POST',
+    });
+    if (response.ok) {
+      router.push('/');
+      router.refresh();
+    }
+  };
+
   return (
     <div className="mt-4">
       <form onSubmit={handleSubmit(handleSave)} className="flex flex-col gap-4">
         <div className="flex flex-col">
           <Label>Номер телефону</Label>
-          <Label className="text-gray-500">{initialProfileInfo.phone}</Label>
+          <Label className="text-gray-500">{profileInfo.phone}</Label>
         </div>
 
         <div className="flex flex-col">
@@ -61,9 +80,7 @@ export default function ProfileInfo() {
               )}
             </>
           ) : (
-            <Label className="text-gray-500">
-              {initialProfileInfo.fullName}
-            </Label>
+            <Label className="text-gray-500">{profileInfo.fullname}</Label>
           )}
         </div>
 
@@ -80,7 +97,7 @@ export default function ProfileInfo() {
             </>
           ) : (
             <Label className="text-gray-500">
-              {initialProfileInfo.address}
+              {profileInfo.addresses[0].address}
             </Label>
           )}
         </div>
@@ -120,9 +137,13 @@ export default function ProfileInfo() {
           >
             <Link href={'/change-password'}>Змінити пароль</Link>
           </Button>
-          <Button type="button">Вийти</Button>
+          <Button type="button" onClick={handleLogout}>
+            Вийти
+          </Button>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default ProfileInfo;

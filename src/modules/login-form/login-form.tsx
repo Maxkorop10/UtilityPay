@@ -8,8 +8,11 @@ import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
 import { loginSchema, LoginData } from './schema/schema';
 import PasswordInput from '@/src/components/PasswordInput/PasswordInput';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function LoginForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -18,9 +21,24 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginData) => {
-    console.log(data);
+  const onSubmit = async (data: LoginData) => {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        phone: data.phoneNumber,
+        password: data.password,
+      }),
+    });
+    if (!response.ok) {
+      setLoginError((await response.json()).error);
+    } else {
+      router.push('/');
+      router.refresh();
+    }
   };
+
+  const [loginError, setLoginError] = useState('');
 
   return (
     <form
@@ -94,6 +112,10 @@ export default function LoginForm() {
       >
         Увійти
       </Button>
+
+      {loginError && (
+        <p className="text-red-500 text-sm mt-1">{`${loginError}`}</p>
+      )}
     </form>
   );
 }
