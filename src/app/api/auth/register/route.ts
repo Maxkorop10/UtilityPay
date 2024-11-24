@@ -32,6 +32,21 @@ export async function POST(req: Request) {
       );
     }
 
+    const availableServices = await prisma.availableService.findMany();
+    const services: {
+      availableServiceId: number;
+      consumedUnits: number;
+      totalPrice: number;
+    }[] = [];
+    availableServices.forEach((availableService) => {
+      const consumedUnits = Math.floor(Math.random() * 100);
+      services.push({
+        availableServiceId: availableService.id,
+        consumedUnits,
+        totalPrice: availableService.unitPrice * consumedUnits,
+      });
+    });
+
     // Створення нового користувача
     const newUser = await prisma.user.create({
       data: {
@@ -39,8 +54,21 @@ export async function POST(req: Request) {
         phone,
         password,
         addresses: {
-          create: [{ address: address }],
+          create: [
+            {
+              address: address,
+              services: {
+                create: services,
+              },
+            },
+          ],
         },
+      },
+    });
+
+    await prisma.cart.create({
+      data: {
+        userId: newUser.id,
       },
     });
 

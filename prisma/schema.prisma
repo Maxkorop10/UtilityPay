@@ -56,8 +56,8 @@ model Service {
   availableService   AvailableService @relation(fields: [availableServiceId], references: [id]) // Прив'язка до доступної послуги
   consumedUnits      Int    // Кількість спожитих одиниць
   totalPrice         Float  // Сума до оплати
-  cartId Int
-  cart               Cart @relation(fields: [cartId], references: [id])
+  cartId             Int?   // Поле може бути null
+  cart               Cart?  @relation(fields: [cartId], references: [id]) // Зв'язок із корзиною
 }
 
 model Cart {
