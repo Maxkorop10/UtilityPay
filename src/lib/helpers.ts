@@ -16,3 +16,25 @@ export function getIconByService(name: string): LucideIcon {
       return Zap;
   }
 }
+
+
+export function translateStatus(status: string): string {
+  switch (status) {
+    case 'CREATED':
+      return 'Заявку створено';
+    case 'UNDER_ADMIN_REVIEW':
+      return 'На розгляді адміністратора';
+    case 'UNDER_COMPANY_REVIEW':
+      return 'На розгляді компанії';
+    case 'IN_PROGRESS':
+      return 'В процесі виконання';
+    case 'COMPLETED':
+      return 'Виконано';
+    case 'REJECTED_BY_COMPANY':
+      return 'Відхилено компанією';
+    case 'REJECTED_BY_ADMIN':
+      return 'Відхилено адміністрацією';
+    default:
+      return 'Невідомий статус';
+  }
+}

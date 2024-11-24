@@ -17,7 +17,7 @@ export default function ChangePassword() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<PasswordFormData>({
     resolver: zodResolver(passwordSchema),
@@ -99,6 +99,7 @@ export default function ChangePassword() {
         <Button
           type="submit"
           className="bg-blue-500 text-white hover:bg-blue-600"
+          disabled={isSubmitting}
         >
           Змінити пароль
         </Button>

@@ -16,7 +16,7 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
@@ -109,6 +109,7 @@ export default function LoginForm() {
       <Button
         type="submit"
         className="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800"
+        disabled={isSubmitting}
       >
         Увійти
       </Button>

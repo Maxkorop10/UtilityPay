@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Utility Payment Application
 
-## Getting Started
+A streamlined application for managing and paying utility bills. This project offers users an intuitive interface to handle their utility expenses efficiently.
 
-First, run the development server:
+Deploy is available at: https://utility-pay.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### User Authentication
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Login & Logout**: Secure authentication with session management.
+- **Profile Management**: Update personal details, including full name, phone number, and addresses.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Utility Service Management
 
-## Learn More
+- **View Available Services**: Users can browse a list of available utility services.
+- **Track Service Usage**: Detailed information about consumed units and associated costs.
+- **Automatic Calculations**: Total cost for services is automatically calculated based on usage and unit price.
 
-To learn more about Next.js, take a look at the following resources:
+### Bill Payments
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Payment History**: View a list of past payments with service details.
+- **Pending Payments**: List and pay for outstanding bills.
+- **Discounts and Offers**: Integrated discount system for specific payment conditions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Password Recovery
 
-## Deploy on Vercel
+- **Phone Verification**: OTP-based recovery process for forgotten passwords.
+- **New Password Setup**: Allows users to securely reset their password with validation.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Miscellaneous
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Error Handling**: User-friendly error messages for validation and server-side issues.
+
+## Technology Stack
+
+- **Frontend**: React with Next.js framework
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks
+- **Form Validation**: `react-hook-form` with Zod schema validation
+- **Backend**: Node.js and Express (if applicable, otherwise remove)
+- **Database**: (Specify database technology if implemented, e.g., PostgreSQL, MongoDB)
+- **API Integration**: Fetch API for client-server communication
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo-name.git
+   cd your-repo-name
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and navigate to http://localhost:3000.

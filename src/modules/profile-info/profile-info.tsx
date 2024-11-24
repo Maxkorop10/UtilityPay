@@ -31,7 +31,7 @@ const ProfileInfo: FC<ProfileProps> = ({ profileInfo }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<ProfileInfoData>({
     resolver: zodResolver(profileSchema),
@@ -135,6 +135,7 @@ const ProfileInfo: FC<ProfileProps> = ({ profileInfo }) => {
               <Button
                 type="submit"
                 className="bg-blue-500 text-white hover:bg-blue-600"
+                disabled={isSubmitting}
               >
                 Зберегти
               </Button>
@@ -142,6 +143,7 @@ const ProfileInfo: FC<ProfileProps> = ({ profileInfo }) => {
                 type="button"
                 onClick={handleCancel}
                 className="bg-gray-200 text-gray-700 hover:bg-gray-300"
+                disabled={isSubmitting}
               >
                 Відхилити
               </Button>
