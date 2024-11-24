@@ -11,17 +11,8 @@ export const paymentSchema = z.object({
 
   summa: z
     .string()
-    .min(2, 'Поле має бути заповненим')
-    .regex(/^[0-9]+([.,][0-9]{1,2})?$/, 'Сума має бути не меншою за 10')
-    .refine(
-      (val) => {
-        const number = parseFloat(val);
-        return !isNaN(number) && number >= 10;
-      },
-      {
-        message: 'Сума має бути не меншою за 10',
-      }
-    ),
+    .min(1, 'Поле має бути заповненим')
+    .regex(/^[0-9]+([.,][0-9]{1,2})?$/, 'Сума має бути не меншою за 10'),
 });
 
 export type PaymentSchema = z.infer<typeof paymentSchema>;
