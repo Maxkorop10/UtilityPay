@@ -16,10 +16,7 @@ import {
   PaymentSchema,
 } from '@/src/modules/utility-payment-form/util-payment-schema/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  DialogDescription,
-  DialogTitle,
-} from '@radix-ui/react-dialog';
+import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
 
 export function UtilPaymentForm() {
   const {
