@@ -9,8 +9,12 @@ import { Separator } from '@/src/components/ui/separator';
 import { Button } from '@/src/components/ui/button';
 import { registrationSchema, RegistrationData } from './schema/schema';
 import PasswordInput from '@/src/components/PasswordInput/PasswordInput';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function RegistrationForm() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -19,9 +23,27 @@ export default function RegistrationForm() {
     resolver: zodResolver(registrationSchema),
   });
 
-  const onSubmit = (data: RegistrationData) => {
-    console.log(data);
+  const onSubmit = async (data: RegistrationData) => {
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fullname: data.fullName,
+        phone: data.phoneNumber,
+        address: data.address,
+        password: data.password,
+      }),
+    });
+
+    if (!response.ok) {
+      setRegistrationError((await response.json()).error);
+    } else {
+      router.push('/');
+      router.refresh();
+    }
   };
+
+  const [registrationError, setRegistrationError] = useState('');
 
   return (
     <form
@@ -150,6 +172,10 @@ export default function RegistrationForm() {
       >
         Зареєструватися
       </Button>
+
+      {registrationError && (
+        <p className="text-red-500 text-sm mt-1">{`${registrationError}`}</p>
+      )}
     </form>
   );
 }
