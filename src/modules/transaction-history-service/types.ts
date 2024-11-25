@@ -1,5 +1,7 @@
 export interface HistoryProps {
-  serviceName: string;
-  price: string;
-  date: string;
+  transactions: {
+    title: string;
+    totalPrice: number;
+    createdAt: string;
+  };
 }

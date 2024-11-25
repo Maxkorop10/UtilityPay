@@ -24,6 +24,7 @@ import { Check, ChevronsUpDown } from 'lucide-react';
 import { providers } from '@/src/lib/providers';
 import { cn } from '@/src/lib/utils';
 import { BankPicker } from '../bank-picker/picker';
+import { UpdateTransactions } from '@/src/lib/actions';
 
 export default function InternetForm() {
   const [open, setOpen] = useState(false);
@@ -56,6 +57,7 @@ export default function InternetForm() {
     if (!response.ok) {
       console.error('Error happend');
     }
+    await UpdateTransactions();
     reset();
   };
 
