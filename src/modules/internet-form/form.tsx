@@ -43,9 +43,6 @@ export default function InternetForm() {
   });
 
   const onSubmit = async (data: InternetPaymentData) => {
-    console.log('Дані для оплати Інтернету:', {
-      ...data,
-    });
     const response = await fetch('/api/internet', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,7 +50,6 @@ export default function InternetForm() {
         totalPrice: data.amount,
       }),
     });
-    console.log(data);
     if (!response.ok) {
       console.error('Error happend');
     }

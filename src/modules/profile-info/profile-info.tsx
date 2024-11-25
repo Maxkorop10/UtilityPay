@@ -17,8 +17,6 @@ const ProfileInfo: FC<ProfileProps> = ({ profileInfo }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editError, setEditError] = useState('');
 
-  console.log(profileInfo);
-
   const {
     register,
     handleSubmit,

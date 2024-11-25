@@ -34,7 +34,6 @@ export function PhonePaymentForm() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const onSubmit = async (data: MobileSchema) => {
-    console.log(data);
     const response = await fetch('/api/mobile', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -42,7 +41,6 @@ export function PhonePaymentForm() {
         totalPrice: data.summa,
       }),
     });
-    console.log(data);
     if (!response.ok) {
       console.error('Error happend');
     }

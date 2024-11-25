@@ -4,7 +4,7 @@ import Transaction from '@/src/modules/transaction-history-service/history';
 import { cookies } from 'next/headers';
 
 export const metadata: Metadata = {
-  title: 'Історія перекази',
+  title: 'Історія переказів',
 };
 
 type TransactionType = {
