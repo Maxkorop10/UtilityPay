@@ -17,7 +17,6 @@ export function UpperNavBar() {
         {token ? (
           <>
             <Link href="/transaction-history">Історія переказів</Link>
-            <Link href="/notifications">Сповіщення</Link>
             <Link href="/cart">Кошик</Link>
 
             <Link href="/profile">

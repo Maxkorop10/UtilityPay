@@ -23,6 +23,7 @@ import {
 } from '@radix-ui/react-dialog';
 import { PaymentInfoProps } from '@/src/modules/utility-payment-form/types';
 import { useRouter } from 'next/navigation';
+import { UpdateTransactions } from '@/src/lib/actions';
 
 const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalPrice, address }) => {
   const router = useRouter();
@@ -53,6 +54,7 @@ const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalPrice, address }) => {
     if (!response.ok) {
       console.error('Error happend');
     } else {
+      await UpdateTransactions();
       router.refresh();
     }
   };

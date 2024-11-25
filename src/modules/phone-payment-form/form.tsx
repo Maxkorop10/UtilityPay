@@ -18,6 +18,7 @@ import {
 } from '@/src/modules/phone-payment-form/schema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { UpdateTransactions } from '@/src/lib/actions';
 
 export function PhonePaymentForm() {
   const {
@@ -45,6 +46,7 @@ export function PhonePaymentForm() {
     if (!response.ok) {
       console.error('Error happend');
     }
+    await UpdateTransactions();
     reset();
   };
 

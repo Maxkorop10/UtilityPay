@@ -17,7 +17,6 @@ export function getIconByService(name: string): LucideIcon {
   }
 }
 
-
 export function translateStatus(status: string): string {
   switch (status) {
     case 'CREATED':
