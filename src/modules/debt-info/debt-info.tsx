@@ -38,6 +38,7 @@ const DebtInfo: FC<DebtInfoProps> = ({ debts }) => {
           <UtilPaymentForm
             totalPrice={totalPrice}
             address={debts[0].address.address}
+            type="debts"
           />
         </DialogContent>
       </Dialog>

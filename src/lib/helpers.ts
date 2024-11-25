@@ -17,7 +17,6 @@ export function getIconByService(name: string): LucideIcon {
   }
 }
 
-
 export function translateStatus(status: string): string {
   switch (status) {
     case 'CREATED':
@@ -36,5 +35,22 @@ export function translateStatus(status: string): string {
       return 'Відхилено адміністрацією';
     default:
       return 'Невідомий статус';
+  }
+}
+
+export function getServiceInfo(name: string): string {
+  switch (name) {
+    case 'Газопостачання':
+      return 'м³';
+    case 'Водопостачання':
+      return 'м³';
+    case 'Світло':
+      return 'кВт·год';
+    case 'Опалення':
+      return 'Гкал';
+    case 'Вивіз сміття':
+      return 'м³';
+    default:
+      return '';
   }
 }
