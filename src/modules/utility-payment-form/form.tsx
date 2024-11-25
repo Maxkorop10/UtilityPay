@@ -25,7 +25,11 @@ import { PaymentInfoProps } from '@/src/modules/utility-payment-form/types';
 import { useRouter } from 'next/navigation';
 import { UpdateTransactions } from '@/src/lib/actions';
 
-const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalPrice, address }) => {
+const UtilPaymentForm: FC<PaymentInfoProps> = ({
+  totalPrice,
+  address,
+  type,
+}) => {
   const router = useRouter();
   const {
     handleSubmit,
@@ -43,14 +47,13 @@ const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalPrice, address }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const onSubmit = async (data: PaymentSchema) => {
-    const response = await fetch('/api/debts', {
+    const response = await fetch(`/api/${type}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         totalPrice: data.summa,
       }),
     });
-    console.log(data);
     if (!response.ok) {
       console.error('Error happend');
     } else {

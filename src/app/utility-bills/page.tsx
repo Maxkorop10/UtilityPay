@@ -2,7 +2,6 @@ import { Label } from '@radix-ui/react-label';
 import Utility from '@/src/modules/utility-service/utility';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
-import { getIconByService } from '@/src/lib/helpers';
 
 export const metadata: Metadata = {
   title: 'Комунальні послуги',
@@ -33,11 +32,12 @@ export default async function UtilityBillsPage() {
 
       {utilitiesData.services.map((utility, index) => (
         <Utility
+          id={utility.id}
           key={index}
-          Icon={getIconByService(utility.availableService.name)}
           utility_name={utility.availableService.name}
           used_value={utility.consumedUnits}
           price={utility.totalPrice}
+          isAdded={utility.cartId !== null}
         />
       ))}
     </div>

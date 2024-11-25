@@ -25,6 +25,7 @@ export async function GET(req: NextRequest) {
     const services = await prisma.service.findMany({
       where: { addressId: address?.id },
       include: { availableService: true },
+      orderBy: { id: 'asc' },
     });
 
     return NextResponse.json({
