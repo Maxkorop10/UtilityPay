@@ -1,3 +1,5 @@
+'use client';
+
 import { Label } from '@radix-ui/react-label';
 import { Button } from '@/src/components/ui/button';
 import {
@@ -5,12 +7,12 @@ import {
   DialogContent,
   DialogTrigger,
 } from '@/src/components/ui/dialog';
-import { UtilPaymentForm } from '@/src/modules/utility-payment-form/form';
+import UtilPaymentForm from '@/src/modules/utility-payment-form/form';
 import { FC } from 'react';
 import { DebtInfoProps } from '@/src/modules/debt-info/types';
 
 const DebtInfo: FC<DebtInfoProps> = ({ debts }) => {
-  const totalDebt = debts.reduce((sum, utility) => sum + utility.price, 0);
+  const totalPrice = debts.reduce((sum, utility) => sum + utility.price, 0);
 
   return (
     <div className="mt-4">
@@ -23,15 +25,20 @@ const DebtInfo: FC<DebtInfoProps> = ({ debts }) => {
 
       <div className="flex flex-row mt-4 gap-2 py-1 border-y">
         <Label className="font-bold">Заборгованість:</Label>
-        <Label className="font-bold text-red-500">{totalDebt} грн.</Label>
+        <Label className="font-bold text-red-500">{totalPrice} грн.</Label>
       </div>
 
       <Dialog>
         <DialogTrigger className="mt-7" asChild>
-          <Button className="bg-blue-500">Оплатити</Button>
+          <Button disabled={totalPrice === 0} className="bg-blue-500">
+            Оплатити
+          </Button>
         </DialogTrigger>
         <DialogContent className="max-w-fit max-h-fit justify-center items-start">
-          <UtilPaymentForm />
+          <UtilPaymentForm
+            totalPrice={totalPrice}
+            address={debts[0].address.address}
+          />
         </DialogContent>
       </Dialog>
     </div>

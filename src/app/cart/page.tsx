@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from '@/src/components/ui/dialog';
-import { UtilPaymentForm } from '@/src/modules/utility-payment-form/form';
+import UtilPaymentForm from '@/src/modules/utility-payment-form/form';
 
 export const metadata: Metadata = {
   title: 'Кошик',
@@ -64,12 +64,15 @@ export default function CartPage() {
         <p className="font-bold text-lg">Загальна сума: {totalPrice} грн.</p>
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="bg-green-600 text-white rounded-lg px-5 py-2 hover:bg-green-800 transition-colors duration-200">
+            <Button
+              disabled={totalPrice === 0}
+              className="bg-green-600 text-white rounded-lg px-5 py-2 hover:bg-green-800 transition-colors duration-200"
+            >
               Зробити оплату
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-fit max-h-fit justify-center items-start">
-            <UtilPaymentForm />
+            <UtilPaymentForm totalPrice={totalPrice} address={''} />
           </DialogContent>
         </Dialog>
       </div>

@@ -15,6 +15,9 @@ type Response = {
     availableService: {
       name: string;
     };
+    address: {
+      address: string;
+    };
   }[];
 };
 

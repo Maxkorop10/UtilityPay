@@ -81,6 +81,7 @@ model Transactions {
   id Int @id @default(autoincrement())
   user      User  @relation(fields: [userId], references: [id])
   userId    Int
+  title String
   totalPrice Float
   createdAt DateTime @default(now())
 }

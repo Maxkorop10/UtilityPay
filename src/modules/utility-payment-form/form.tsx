@@ -9,31 +9,52 @@ import {
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
 import { BankPicker } from '@/src/modules/bank-picker/picker';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   paymentSchema,
   PaymentSchema,
 } from '@/src/modules/utility-payment-form/util-payment-schema/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
+import {
+  DialogClose,
+  DialogDescription,
+  DialogTitle,
+} from '@radix-ui/react-dialog';
+import { PaymentInfoProps } from '@/src/modules/utility-payment-form/types';
+import { useRouter } from 'next/navigation';
 
-export function UtilPaymentForm() {
+const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalPrice, address }) => {
+  const router = useRouter();
   const {
     handleSubmit,
     formState: { errors },
     register,
-    reset,
   } = useForm<PaymentSchema>({
     mode: 'all',
     resolver: zodResolver(paymentSchema),
+    defaultValues: {
+      summa: totalPrice.toString(),
+      address: address,
+    },
   });
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  const onSubmit = (data: PaymentSchema) => {
+  const onSubmit = async (data: PaymentSchema) => {
+    const response = await fetch('/api/debts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        totalPrice: data.summa,
+      }),
+    });
     console.log(data);
-    reset();
+    if (!response.ok) {
+      console.error('Error happend');
+    } else {
+      router.refresh();
+    }
   };
 
   const handleInputFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +88,7 @@ export function UtilPaymentForm() {
               placeholder="м. Черкаси, вул. Благовісна, буд. 31, кв. 121"
               {...register('address')}
               id="address_input"
+              disabled={true}
             />
             {errors.address && (
               <p className="text-red-500 text-sm mt-2">
@@ -85,6 +107,7 @@ export function UtilPaymentForm() {
               {...register('summa')}
               id="summa_input"
               onInput={handleInputFilter}
+              disabled={true}
             />
             {errors.summa && (
               <p className="text-red-500 text-sm mt-2">
@@ -94,15 +117,19 @@ export function UtilPaymentForm() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={selectedIndex === null}
-          >
-            Оплатити
-          </Button>
+          <DialogClose asChild>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={selectedIndex === null}
+            >
+              Оплатити
+            </Button>
+          </DialogClose>
         </CardFooter>
       </Card>
     </form>
   );
-}
+};
+
+export default UtilPaymentForm;

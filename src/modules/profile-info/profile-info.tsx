@@ -9,23 +9,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfileInfoData, profileSchema } from './schema/schema';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
-interface ProfileProps {
-  profileInfo: {
-    fullname: string;
-    phone: string;
-    addresses: {
-      address: string;
-      id: number;
-      userId: number;
-    }[];
-  };
-}
+import { ProfileProps } from '@/src/modules/profile-info/types';
 
 const ProfileInfo: FC<ProfileProps> = ({ profileInfo }) => {
   const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
+
+  console.log(profileInfo);
 
   const {
     register,

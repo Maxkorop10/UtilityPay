@@ -7,5 +7,8 @@ export interface DebtInfoProps {
     availableService: {
       name: string;
     };
+    address: {
+      address: string;
+    };
   }[];
 }

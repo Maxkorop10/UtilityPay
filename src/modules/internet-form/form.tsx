@@ -35,15 +35,28 @@ export default function InternetForm() {
     setValue,
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<InternetPaymentData>({
     resolver: zodResolver(internetPaymentSchema),
   });
 
-  const onSubmit = (data: InternetPaymentData) => {
+  const onSubmit = async (data: InternetPaymentData) => {
     console.log('Дані для оплати Інтернету:', {
       ...data,
     });
+    const response = await fetch('/api/internet', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        totalPrice: data.amount,
+      }),
+    });
+    console.log(data);
+    if (!response.ok) {
+      console.error('Error happend');
+    }
+    reset();
   };
 
   return (
