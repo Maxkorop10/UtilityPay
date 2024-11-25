@@ -23,6 +23,7 @@ model User {
   cart      Cart?     // Користувач має одну корзину
   sessions  Session[] // Список сесій користувача
   transactions Transactions[]
+  orders    Order[]
 }
 
 model Address {
@@ -93,4 +94,26 @@ model Debt {
   availableServiceId Int
   availableService   AvailableService @relation(fields: [availableServiceId], references: [id]) // Прив'язка до доступної послуги
   price         Float
+}
+
+model Order {
+  id                Int      @id @default(autoincrement())
+  userId            Int
+  fullname          String
+  address           String
+  orderDescription  String
+  status            OrderStatus @default(CREATED)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  User              User @relation(fields: [userId], references: [id])
+}
+
+enum OrderStatus {
+  CREATED
+  UNDER_ADMIN_REVIEW
+  UNDER_COMPANY_REVIEW
+  IN_PROGRESS
+  COMPLETED
+  REJECTED_BY_COMPANY
+  REJECTED_BY_ADMIN
 }

@@ -18,7 +18,7 @@ export default function RegistrationForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegistrationData>({
     resolver: zodResolver(registrationSchema),
   });
@@ -169,6 +169,7 @@ export default function RegistrationForm() {
       <Button
         type="submit"
         className="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800"
+        disabled={isSubmitting}
       >
         Зареєструватися
       </Button>

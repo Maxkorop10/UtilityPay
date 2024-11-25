@@ -40,3 +40,67 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Помилка сервера' }, { status: 500 });
   }
 }
+
+export async function POST(req: NextRequest) {
+  const {
+    fullName,
+    phone,
+    address,
+  }: { fullName: string; phone: string; address: string } = await req.json();
+  const token = req.cookies.get('auth_token')?.value;
+
+  if (!token) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { payload } = await jose.jwtVerify(
+      token,
+      new TextEncoder().encode(SECRET_KEY)
+    );
+    const userId = payload.userId as number;
+
+    // Перевірка, чи існує користувач з таким номером телефону
+    const existingUser = await prisma.user.findUnique({
+      where: { phone },
+    });
+
+    if (existingUser && existingUser.id !== userId) {
+      return NextResponse.json(
+        { error: 'Phone number already exists' },
+        { status: 400 }
+      );
+    }
+
+    const userAddress = await prisma.address.findFirst({
+      where: { userId },
+    });
+
+    // Оновлення профілю
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        fullname: fullName,
+        phone,
+        addresses: {
+          update: {
+            where: { id: userAddress?.id },
+            data: { address },
+          },
+        },
+      },
+    });
+
+    return NextResponse.json({ message: 'Profile updated successfully' });
+  } catch (error) {
+    console.error('Помилка оновлення профілю:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}

@@ -3,6 +3,7 @@ import './globals.css';
 import UpperNavBar from '@/src/components/UpperNavBar/UpperNavBar';
 import { AppSidebar } from '@/src/components/AppSideBar/AppSideBar';
 import { SidebarProvider } from '@/src/components/ui/sidebar';
+import NextTopLoader from 'nextjs-toploader';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--backgroundMain)]`}
       >
+        <NextTopLoader showSpinner={false} />
         <UpperNavBar />
         <main className="p-9 flex">
           <SidebarProvider>
