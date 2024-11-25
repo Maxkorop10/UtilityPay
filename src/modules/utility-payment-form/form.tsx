@@ -16,11 +16,15 @@ import {
   PaymentSchema,
 } from '@/src/modules/utility-payment-form/util-payment-schema/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
+import {
+  DialogClose,
+  DialogDescription,
+  DialogTitle,
+} from '@radix-ui/react-dialog';
 import { PaymentInfoProps } from '@/src/modules/utility-payment-form/types';
 import { useRouter } from 'next/navigation';
 
-const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalDebt, address }) => {
+const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalPrice, address }) => {
   const router = useRouter();
   const {
     handleSubmit,
@@ -30,7 +34,7 @@ const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalDebt, address }) => {
     mode: 'all',
     resolver: zodResolver(paymentSchema),
     defaultValues: {
-      summa: totalDebt.toString(),
+      summa: totalPrice.toString(),
       address: address,
     },
   });
@@ -42,7 +46,7 @@ const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalDebt, address }) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        totalDebt: data.summa,
+        totalPrice: data.summa,
       }),
     });
     console.log(data);
@@ -113,13 +117,15 @@ const UtilPaymentForm: FC<PaymentInfoProps> = ({ totalDebt, address }) => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={selectedIndex === null}
-          >
-            Оплатити
-          </Button>
+          <DialogClose asChild>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={selectedIndex === null}
+            >
+              Оплатити
+            </Button>
+          </DialogClose>
         </CardFooter>
       </Card>
     </form>

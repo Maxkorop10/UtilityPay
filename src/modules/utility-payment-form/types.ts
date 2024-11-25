@@ -1,4 +1,4 @@
 export interface PaymentInfoProps {
-  totalDebt: number;
+  totalPrice: number;
   address: string;
 }

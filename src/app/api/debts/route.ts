@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const token = req.cookies.get('auth_token')?.value;
 
-  const { totalDebt } = await req.json();
+  const { totalPrice } = await req.json();
 
   try {
     if (!token) {
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
     await prisma.transactions.create({
       data: {
         title: 'Оплата боргу',
-        totalPrice: totalDebt,
+        totalPrice: +totalPrice,
         userId: payload.userId as number,
       },
     });
