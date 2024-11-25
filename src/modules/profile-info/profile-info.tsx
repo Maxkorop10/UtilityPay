@@ -56,6 +56,7 @@ const ProfileInfo: FC<ProfileProps> = ({ profileInfo }) => {
         setEditError('Помилка оновлення даних');
       }
     } else {
+      setEditError('');
       setIsEditing(false);
       router.refresh();
     }

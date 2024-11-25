@@ -5,7 +5,6 @@ const SECRET_KEY =
   process.env.JWT_SECRET ||
   'd72757de3d68d23a60c6ecbcb33499e94c5099f163d5caccfda93609ef918ca5';
 
-// const publicRoutes = ['/', '/login', '/registration', '/_next', '/api'];
 const privateRoutes = [
   '/cart',
   '/change-password',
@@ -15,7 +14,6 @@ const privateRoutes = [
   '/new-order',
   '/notifications',
   '/profile',
-  '/support',
   '/transaction-history',
   '/utility-bills',
 ];
